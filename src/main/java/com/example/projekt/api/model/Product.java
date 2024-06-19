@@ -1,10 +1,10 @@
-package com.example.projekt.entities;
+package com.example.projekt.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import jakarta.persistence.*;
 import java.util.List;
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Product {
+
     private Integer id;
     private String title;
     private String description;
@@ -13,24 +13,34 @@ public class Product {
     private Float discountPercentage;
     private Float rating;
     private Integer stock;
+
     private List<String> tags;
+
     private String brand;
     private String sku;
     private Integer weight;
+
     private Dimension dimensions;
+
     private String warrantyInformation;
     private String shippingInformation;
     private String availabilityStatus;
+
     private List<Review> reviews;
+
     private String returnPolicy;
     private Integer minimumOrderQuantity;
+
     private Meta meta;
-    private List<String>  images;
+
+    private List<String> images;
+
     private String thumbnail;
 
-    public Product(){
+    // Default constructor
+    public Product() {}
 
-    }
+    // Constructor with parameters
     public Product(Integer id, String title, String description, String category, Float price, Float discountPercentage, Float rating, Integer stock, List<String> tags, String brand, String sku, Integer weight, Dimension dimensions, String warrantyInformation, String shippingInformation, String availabilityStatus, List<Review> reviews, String returnPolicy, Integer minimumOrderQuantity, Meta meta, List<String> images, String thumbnail) {
         this.id = id;
         this.title = title;
@@ -55,6 +65,8 @@ public class Product {
         this.images = images;
         this.thumbnail = thumbnail;
     }
+
+    // Getters and setters
 
     public Integer getId() {
         return id;
@@ -258,12 +270,5 @@ public class Product {
                 ", images=" + images +
                 ", thumbnail='" + thumbnail + '\'' +
                 '}';
-    }
-    public String printImportant() {
-       return "Information about the product:" + '\n' +
-        "Name of the product = '" + title + '\n' +
-        "Description='" + description + '\n' +
-        "Price=" + price + '\n'+
-        "Images=" + images;
     }
 }

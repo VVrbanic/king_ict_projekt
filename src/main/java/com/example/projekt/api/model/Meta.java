@@ -1,7 +1,4 @@
-package com.example.projekt.entities;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+package com.example.projekt.api.model;
 
 public class Meta {
     private String createdAt;

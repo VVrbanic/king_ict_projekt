@@ -1,8 +1,4 @@
-package com.example.projekt.entities;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
+package com.example.projekt.api.model;
 
 public class Review {
     private Integer rating;

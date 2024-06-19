@@ -1,4 +1,4 @@
-package com.example.projekt.entities;
+package com.example.projekt.api.model;
 
 public class Dimension {
     private double width;
