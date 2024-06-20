@@ -4,25 +4,19 @@ import com.example.projekt.api.model.Product;
 import com.example.projekt.api.model.ShortProduct;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
     private List<Product> productList;
 
-
-    public List<ShortProduct> getProducts() {
-        List<ShortProduct> productListAll = new ArrayList<>();
-        for (Product product : productList) {
-            productListAll.add(new ShortProduct(product.getTitle(), product.getPrice(), product.getDescription(), product.getImages()));
-        }
-        return productListAll;
-    }
 
     public ProductService(){
         String url_products = "https://dummyjson.com/products";
@@ -50,6 +44,13 @@ public class ProductService {
         }
     }
 
+    public List<ShortProduct> getProducts() {
+        List<ShortProduct> productListAll = new ArrayList<>();
+        for (Product product : productList) {
+            productListAll.add(new ShortProduct(product.getTitle(), product.getPrice(), product.getDescription(), product.getImages()));
+        }
+        return productListAll;
+    }
 
     public Optional<Product> getProduct(int id) {
         Optional optional = Optional.empty();
@@ -71,7 +72,18 @@ public class ProductService {
             }
         }
         return optional;
-
     }
+
+    public Optional<Product> getFilteredProducts(String category, Float price) {
+        Optional optional = Optional.empty();
+        optional = Optional.of(productList.stream()
+                .filter(product -> (category == null || category.equalsIgnoreCase(product.getCategory())) &&
+                        (price == null || price.equals(product.getPrice())))
+                .collect(Collectors.toList()));
+        return optional;
+    }
+
+
+
 
 }
