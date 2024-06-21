@@ -4,6 +4,7 @@ import com.example.projekt.api.model.Product;
 import com.example.projekt.api.model.ShortProduct;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -15,14 +16,6 @@ import java.util.Optional;
 public class ProductService {
     private List<Product> productList;
 
-
-    public List<ShortProduct> getProducts() {
-        List<ShortProduct> productListAll = new ArrayList<>();
-        for (Product product : productList) {
-            productListAll.add(new ShortProduct(product.getTitle(), product.getPrice(), product.getDescription(), product.getImages()));
-        }
-        return productListAll;
-    }
 
     public ProductService(){
         String url_products = "https://dummyjson.com/products";
@@ -50,6 +43,13 @@ public class ProductService {
         }
     }
 
+    public List<ShortProduct> getProducts() {
+        List<ShortProduct> productListAll = new ArrayList<>();
+        for (Product product : productList) {
+            productListAll.add(new ShortProduct(product.getTitle(), product.getPrice(), product.getDescription(), product.getImages()));
+        }
+        return productListAll;
+    }
 
     public Optional<Product> getProduct(int id) {
         Optional optional = Optional.empty();
@@ -71,7 +71,23 @@ public class ProductService {
             }
         }
         return optional;
-
     }
+
+
+    //Example: http://localhost:8080/products/filter?category=beauty&price=19.99
+    public Optional<Product> getFilteredProducts(String category, String price) {
+        System.out.println(category);
+        System.out.println(price);
+        Optional optional = Optional.empty();
+        for (Product product : productList) {
+            if (category.equalsIgnoreCase(product.getCategory()) && price.equals(product.getPrice().toString())) {
+                optional = Optional.of(product);
+                return optional;
+            }
+        }
+        return optional;
+    }
+
+
 
 }

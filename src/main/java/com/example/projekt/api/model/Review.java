@@ -1,15 +1,22 @@
 package com.example.projekt.api.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
 public class Review {
     private Integer rating;
     private String comment;
-    private String  date;
+    private String date;
     private String reviewerName;
     private String reviewerEmail;
 
-    public Review(){
+    public Review() {
 
     }
+
     public Review(Integer rating, String comment, String date, String reviewerName, String reviewerEmail) {
         this.rating = rating;
         this.comment = comment;
