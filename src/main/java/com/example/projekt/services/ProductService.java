@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -73,20 +74,15 @@ public class ProductService {
         return optional;
     }
 
-
-    //Example: http://localhost:8080/products/filter?category=beauty&price=19.99
-    public Optional<Product> getFilteredProducts(String category, String price) {
-        System.out.println(category);
-        System.out.println(price);
+    public Optional<Product> getFilteredProducts(String category, Float price) {
         Optional optional = Optional.empty();
-        for (Product product : productList) {
-            if (category.equalsIgnoreCase(product.getCategory()) && price.equals(product.getPrice().toString())) {
-                optional = Optional.of(product);
-                return optional;
-            }
-        }
+        optional = Optional.of(productList.stream()
+                .filter(product -> (category == null || category.equalsIgnoreCase(product.getCategory())) &&
+                        (price == null || price.equals(product.getPrice())))
+                .collect(Collectors.toList()));
         return optional;
     }
+
 
 
 

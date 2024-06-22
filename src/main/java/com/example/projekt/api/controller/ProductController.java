@@ -4,7 +4,6 @@ import com.example.projekt.api.model.Product;
 import com.example.projekt.api.model.ShortProduct;
 import com.example.projekt.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,11 +53,13 @@ public class ProductController {
         return productService.getProducts();
     }
 
-    //http://localhost:8080/products/filter?category=beauty&price=19.99
-    //http://localhost:8080/products/filter?category=beauty
-    //http://localhost:8080/products/filter?category=price=19.99
+
+    //Example: http://localhost:8080/products/filter?category=beauty&price=19.99
+    // Example: http://localhost:8080/products/filter?price=19.99
+    //Example: http://localhost:8080/products/filter?category=beauty
     @GetMapping("/filter")
-    public Optional<Product> getFilteredProducts(@RequestParam String category, @RequestParam String price) {
+    public Optional<Product> getFilteredProducts(@RequestParam(required = false) String category,
+                                             @RequestParam(required = false) Float price) {
         return productService.getFilteredProducts(category, price);
     }
 
