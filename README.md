@@ -4,12 +4,12 @@
 
 ## Spring Initializr Setup
 
-1. **Download Spring Boot using Maven:**
-    - Visit [Spring Initializr](https://start.spring.io/) and select Maven as the build tool.
+1. **Download Spring Boot:**
+    - Visit [Spring Initializr](https://start.spring.io/) and select Maven as the build tool
     - All the dependencies are included in pom.xml
 
 2. **Opening Project in IntelliJ IDEA:**
-    - Open IntelliJ IDEA and wait for the project to fully load (this may take a few minutes).
+    - Open IntelliJ IDEA and wait for the project to fully load (this may take a few minutes)
 
 ---
 
@@ -45,7 +45,7 @@
    ```
 
 3. **Configure `application.properties`:**
-    - Add the following properties to `src/main/resources/application.properties`:
+    - Add the following to `src/main/resources/application.properties`:
 
    ```properties
    spring.application.name=projekt
@@ -84,15 +84,15 @@
 
 - Use Postman with requests of type GET.
 - Add a custom Authorization header with a valid token from the `users` table.
-- If the token is valid, you can access product information; otherwise, a 401 Unauthorized error is returned.
+- If the token is valid, you can access product information, if not a 401 Unauthorized error is returned.
 
 ---
 
 # Future Improvements
 
-- Implement caching to improve performance by storing frequently filtered data in memory.
-- Implement error logging functionality to create log files each time the application starts.
+- Implement caching to solve the problem when the user asks for the same filters multiple times
+- Improve the error logging by creating new log files each time the application starts
 
 ---
 
-This README file provides steps for setting up the project, configuring the database, testing endpoints, and considerations for future enhancements. Adjust the placeholders `<your_username_from_MySQLWorkbench_Connections>` and `<your_password_from_MySQLWorkbench_Connections>` with your actual MySQL Workbench connection details before usage.
+This README file provides steps for setting up the project, configuring the database, testing endpoints, and considerations for future enhancements. Don't forget to adjust the placeholders `<your_username_from_MySQLWorkbench_Connections>` and `<your_password_from_MySQLWorkbench_Connections>` with your actual MySQL Workbench connection details before usage.
