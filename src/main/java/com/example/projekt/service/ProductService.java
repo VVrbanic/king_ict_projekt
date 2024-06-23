@@ -1,4 +1,4 @@
-package com.example.projekt.services;
+package com.example.projekt.service;
 
 import com.example.projekt.api.model.Product;
 import com.example.projekt.api.model.ShortProduct;

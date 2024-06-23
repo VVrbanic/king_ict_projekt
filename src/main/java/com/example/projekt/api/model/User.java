@@ -1,23 +1,30 @@
 package com.example.projekt.api.model;
 
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name="users")
 public class User {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID")
+    private Long id;
+
+    @Column(name="NAME")
     private String name;
-    private int age;
-    private String email;
+    @Column(name="TOKEN")
+    private String token;
 
-    public User(int id, String name, int age, String email) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.email = email;
-    }
-
-    public int getId() {
+    // Getters and Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -29,19 +36,11 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getToken() {
+        return token;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setToken(String token) {
+        this.token = token;
     }
 }
